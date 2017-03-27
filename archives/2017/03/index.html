@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+  
+  <title>Hexo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
+</head>
+<body class="home">
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="Hexo"><span class="octicon octicon-mark-github"></span> Hexo</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+      </nav>
+  </div>
+</header>
+
+	<section class="banner-false">
+    <div class="collection-head">
+        <div class="container">
+            <div class="collection-title">
+                <h1 class="collection-header" id="site-description">
+                    
+                </h1>
+                <div class="collection-info">
+                    
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-location">
+                                   
+                                        Shanghai, China
+                                    
+                                </span>
+                                
+                            
+                        </span>
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-mark-github">
+                                   
+                                </span>
+                                
+                                    <a href="http://github.com/FelixDYS" target="_blank">FelixDYS</a>
+                                
+                            
+                        </span>
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-organization">
+                                   
+                                        Magikid
+                                    
+                                </span>
+                                
+                            
+                        </span>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+	   <section class="container">
+    <div class="columns">
+        <div class="column two-thirds">
+            
+                  <article id="post-Three" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/27/Three/">Maya导入报错Maya couldn&#39;t convert the mb file to an fbx file!</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>一般我们做Unity项目，其中的３Ｄ模型会采用Maya或者3Dmax去做，导出会是Unity支持的FBX格式，这种格式的文件是不需要用Maya或者3Dmax进行导入处理。但是有时候可能根据项目的不同，或者你的项目模型都是外包的，别人只给你mb格式的文件。这种文件就需要我们导入视频是一样借用外部软件的API进行格式解析的处理，这样就可以在Unity中正常使用了。</p>
+<p>本次我整理一个工程文件，之前我再公司的Mac电脑上打开并无错误，Unity版本为5.3Pro版。拿回家的电脑是Windows，Unity版本是5.4.1。当我导入新的工程师后就报错：<br><img src="http://i.imgur.com/8mxgTZS.png" alt=""></p>
+<p>这个问题我不止一次碰到了，之前解决是删除材质重导，或者是改变Unity版本或者是Maya版本。一般最有可能是就是Maya版本的问题，就是你当前电脑上的Maya版本和到处该模型的版本不一致。安装一个相同版本就可以，在此提醒，保证你电脑上的Maya版本和3D部门的Maya版本是一致的。</p>
+<p>今天我要提出的另一个原因是很神奇的一个Bug，我尝试过用Unity5.4版本和Maya2014正确的打开过这个工程，所以我确信并不是Maya和Unity版本的问题，当然也和才是没关系。最后发现是文件夹命名的问题（敲黑板：</p>
+<p><img src="http://i.imgur.com/GxK3V3q.png" alt=""></p>
+<p>可以看到，中文命名的文件夹中的mb文件没法被识别，同时也会报错。当我将文件夹名字改为非中文后：</p>
+<p><img src="http://i.imgur.com/zVfOmsz.png" alt=""></p>
+<p>就是这个贼坑爹的问题造成了错误提示，最坑的是在Mac上并没有出现，但是在Windows中出现了，这种不同平台出现的问题很让忍纠结。在此写出来以防自己再出错，同时让读者知道解决这个问题的方法之一。</p>
+<p>总结：永远不要在工程中用中文命名任何文件，永远。。。（也许下次我又偷懒了。。。</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-27T11:39:48.855Z" itemprop="datePublished">2017-03-27</time>
+        </span>
+
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-Second" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/27/Second/">Unity视频播放</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>Unity是为游戏而生，所以对于音频，视频等多媒体文件并没有很丰富的处理，音频还有一个混音器，但是不进行场景音效编辑的话，不会怎么使用。至于视频播放就可怜了，其原生方法也只有一个全屏播放，毕竟在游戏中一般也只会进行全屏播放。还有一种方式是用QuickTime进行视频解析，解析成MovieTexture然后视频和音频分离的，进行播放，这种方式不难，但是这种方式并不适应移动播放，毕竟Unity主要还是进行手游的开发。</p>
+<h2 id="1-Handle原生播放"><a href="#1-Handle原生播放" class="headerlink" title="1.Handle原生播放"></a>1.Handle原生播放</h2><pre><code>`void Start ()
+{
+    Handheld.PlayFullScreenMovie(Application.streamingAssetsPath + &quot;/open.mp4&quot;, Color.black,  FullScreenMovieControlMode.Full);
+}`
+</code></pre><h2 id="2-两大移动平台的视频播放"><a href="#2-两大移动平台的视频播放" class="headerlink" title="2.两大移动平台的视频播放"></a>2.两大移动平台的视频播放</h2><p><strong>iOS</strong></p>
+<p>Unity C#代码</p>
+<pre><code>`using UnityEngine;
+ using System.Collections;
+ using System.Runtime.InteropServices;
+
+public class IOSVideo {
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _initVideo(string path,float posX,float posY,float width,float height);
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _play();
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _pause();
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _stop();
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _setControlStyle(int type);
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _setFullscreen(bool f);
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _setFinishCallback(string go, string method);
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _setDoneCallback(string go, string method);
+
+[DllImport(&quot;__Internal&quot;)] 
+private static extern void _removeVideo();
+
+// init video,three parameter
+public static void InitVideo(string path,float posX,float posY,float width,float height)
+{
+    _initVideo(path, posX, posY, width, height);
+}
+
+//here play video
+public static void Play()
+{
+    _play();
+}
+
+//here can pause video
+public static void Pause()
+{
+    _pause();
+}
+
+//here stop video
+public static void Stop()
+{
+    _stop();
+}
+
+public static void SetControlStyle(int style)
+{
+    _setControlStyle(style);
+}
+
+public static void SetFullscreen(bool f)
+{
+    _setFullscreen(f);
+}
+
+public static void RemoveVideo()
+{
+    _removeVideo();
+}
+
+public static void SetFinishCallback(string gameObject,string method)
+{
+    _setFinishCallback(gameObject,method);
+}
+
+
+public static void SetDoneCallback(string gameObject,string method)
+{
+    _setDoneCallback(gameObject,method);
+}
+
+}
+</code></pre><p>`</p>
+<p>桥接代码：</p>
+<pre><code>`//
+ //  IOSVideo.m
+ //  IOSVideo
+ //
+ //  Created by Bruce on 14/11/26.
+ //  Copyright (c) 2014年 Bruce. All rights reserved.
+ //
+
+ #import &lt;MediaPlayer/MediaPlayer.h&gt;
+
+@interface IOSVideo : NSObject
+
+@end
+
+
+@implementation IOSVideo
+
+NSString* _gameObj;
+NSString* _method;
+
+NSString* _gameObj2;
+NSString* _method2;
+
+MPMoviePlayerController *movie = nil;
+
+
+extern &quot;C&quot;
+{
+void _initVideo(char* path,float posX, float posY, float width, float height);
+void _setControlStyle(int type);
+void _setFullscreen(bool f);
+void _play();
+void _pause();
+void _stop();
+void _setFinishCallback(char* go, char* method);
+void _setDoneCallback(char* go, char* method);
+void _removeVideo();
+}
+
+
+void _initVideo(char* path,float posX, float posY, float width, float height)
+{
+//视频URL
+NSURL *url = [NSURL fileURLWithPath: CToS(path)];
+
+//视频播放对象
+float s = [[UIScreen mainScreen] respondsToSelector:@selector(nativeScale)] ? [UIScreen mainScreen].nativeScale : [UIScreen mainScreen].scale;
+UIView *unityview =  UnityGetGLView();
+movie = [[MPMoviePlayerController alloc] initWithContentURL:url];
+movie.view.frame = CGRectMake(posX/s, posY/s, width/s, height/s);
+movie.controlStyle = MPMovieControlStyleNone;
+movie.view.userInteractionEnabled = true;
+[unityview addSubview:movie.view];
+
+movie.view.hidden = YES;
+
+// 注册一个播放结束的通知
+[[NSNotificationCenter defaultCenter] addObserver:[IOSVideo class]
+                                         selector:@selector(movieFinishedCallback:)
+                                             name:MPMoviePlayerPlaybackDidFinishNotification
+                                           object:movie];
+
+//    [[NSNotificationCenter defaultCenter] addObserver:[IOSVideo class]
+//                                             selector:@selector(doneButtonClick:)
+//                                                 name:MPMoviePlayerWillExitFullscreenNotification
+//                                               object:nil];
+
+
+}
+
+
+void _play()
+{
+[movie play];
+movie.view.hidden = NO;
+}
+
+void _pause()
+{
+    [movie pause];
+}
+
+void _stop()
+{
+    [movie stop];
+    movie.view.hidden = YES;
+}
+
+void _removeVideo()
+{
+    _stop();
+    [movie.view removeFromSuperview];
+    movie = nil;
+}
+
+void _setControlStyle(int type)
+{
+    movie.controlStyle = (MPMovieControlStyle)type;
+}
+
+void _setFullscreen(bool f)
+{
+    movie.fullscreen = f;
+}
+
+
+    +(void)movieFinishedCallback:(NSNotification*)aNotification
+{
+    NSNumber *reason = [aNotification.userInfo objectForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey];
+
+    if ([reason intValue] == MPMovieFinishReasonUserExited) {
+        _removeVideo();
+        UnitySendMessage(SToC(_gameObj2), SToC(_method2), &quot;&quot;);
+    }else{
+        //movie.view.hidden = YES;
+        UnitySendMessage(SToC(_gameObj), SToC(_method), &quot;&quot; );
+    }
+}
+
+
+void _setFinishCallback(char* go, char* method)
+{
+    _gameObj = CToS(go);
+    _method = CToS(method);
+}
+
+void _setDoneCallback(char* go, char* method)
+{
+    _gameObj2 = CToS(go);
+    _method2 = CToS(method);
+}
+
+
+NSString* CToS (char* ch)
+{
+    return [[NSString alloc] initWithCString:ch encoding:NSUTF8StringEncoding];
+}
+
+const char* SToC (NSString* str)
+{
+    return [str cStringUsingEncoding:NSUTF8StringEncoding];
+}
+
+
+
+
+@end
+</code></pre><p>`<br><strong>Android</strong></p>
+<p>Unity C#代码：</p>
+<pre><code>`public class AndroidVideo : MonoBehaviour {
+
+#if UNITY_ANDROID
+
+static AndroidJavaObject videoPlayer = null;
+
+// 初始化视频
+public static void InitVideo(string path,float posX,float posY, float width, float height)
+{
+    if (videoPlayer == null) {
+        videoPlayer = new AndroidJavaObject(&quot;xxxxxx(包名).VideoUtils&quot;);    
+    }
+
+    if (videoPlayer != null) {
+        videoPlayer.Call (&quot;_initVideo&quot;, path, (int)posX, (int)posY, (int)width, (int)height);
+    }
+}
+
+// 开始播放视频
+public static void Play()
+{
+    if (videoPlayer == null) {
+        Debug.Log(&quot;Android Video is not init&quot;);;
+        return;
+    }
+    videoPlayer.Call (&quot;_play&quot;);
+}
+
+// 暂停视频
+public static void Pause()
+{
+    if (videoPlayer == null) {
+        Debug.Log(&quot;Android Video is not init&quot;);;
+        return;
+    }
+    videoPlayer.Call (&quot;_pause&quot;);
+}
+
+// 停止视频
+public static void Stop()
+{
+    if (videoPlayer == null) {
+        Debug.Log(&quot;Android Video is not init&quot;);;
+        return;
+    }
+    videoPlayer.Call (&quot;_stop&quot;);
+}
+
+// 移除视频，释放内存
+public static void RemoveVideo()
+{
+    if (videoPlayer == null) {
+        Debug.Log(&quot;Android Video is not init&quot;);;
+        return; 
+    }
+    videoPlayer.Call (&quot;_removeVideo&quot;);
+}
+
+// 设置回调函数
+public static void SetCallbackGameObject(string gameObject,string method)
+{
+    if (videoPlayer == null) {
+        Debug.Log(&quot;Android Video is not init&quot;);;
+        return;
+    }
+    videoPlayer.Call (&quot;_setCallbackGameObject&quot;,gameObject,method);
+
+}
+#endif
+}
+</code></pre><p>`</p>
+<p>桥接代码：</p>
+<pre><code>`package com.angellecho.androidplugins;
+
+import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.io.IOException;
+
+import com.android.vending.expansion.zipfile.APKExpansionSupport;
+import com.android.vending.expansion.zipfile.ZipResourceFile;
+import com.unity3d.player.UnityPlayer;
+
+public class VideoUtils implements MediaPlayer.OnVideoSizeChangedListener,
+    MediaPlayer.OnPreparedListener, MediaPlayer.OnCompletionListener {
+
+SurfaceView surfaceView;
+MediaPlayer mediaPlayer;
+
+final Activity baseActivity = UnityPlayer.currentActivity;;
+// 相对布局
+String mediaName; // 媒体路径
+AssetFileDescriptor afd;
+
+int x, y, width, height;
+
+/**
+ * 初始化音频
+ * 
+ * @param videoName
+ *            音频的名字
+ * @param x
+ *            x坐标
+ * @param y
+ *            y坐标
+ * @param width
+ *            宽度
+ * @param height
+ *            长度
+ */
+public void _initVideo(String videoName, int x, int y, int width, int height) {
+
+    // 获取视频文件名
+    int location = videoName.indexOf(&quot;!/assets/&quot;);
+    if (location &gt;= 0) {
+        videoName = videoName.substring(location + 9);
+    }
+
+    // Log.e(&quot;location&quot;, String.valueOf(location));
+
+    // 参数设置
+    this.x = x;
+    this.y = y;
+    this.width = width;
+    this.height = height;
+    this.mediaName = videoName;
+
+    // 初始化surfaceView
+    if (this.surfaceView != null) {
+        _removeVideo();
+    }
+
+    // 判断文件是否存在
+    try {
+        Log.d(&quot;AFD&quot;, &quot;AFD is ready init&quot;);
+        afd = baseActivity.getAssets().openFd(videoName);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    if (afd == null) {
+
+        try {
+            ZipResourceFile expansionFile = APKExpansionSupport
+                    .getAPKExpansionZipFile(
+                            baseActivity.getApplicationContext(),
+                            AppUtils._getVersionCode(), 0);
+            Log.d(&quot;expansionFile&quot;, &quot;expansionFile is  &quot;
+                    + (expansionFile == null));
+            Log.d(&quot;videoName&quot;, &quot;videoName is &quot; + videoName);
+
+            afd = expansionFile.getAssetFileDescriptor(&quot;assets/&quot;
+                    + videoName);
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    if (afd == null) {
+        System.out.println(&quot;file is not exist&quot;);
+        return;
+    }
+
+}
+
+String gameObject;
+String completedCallback;
+
+/**
+ * 设置视频播放结束回调
+ * 
+ * @param gameObject
+ * @param completedCallback
+ */
+@SuppressWarnings(&quot;unused&quot;)
+private void _setCallbackGameObject(final String gameObject,
+        final String completedCallback) {
+    this.gameObject = gameObject;
+    this.completedCallback = completedCallback;
+}
+
+/**
+ * 初始化操作
+ */
+private void _init() {
+    //
+    if (this.surfaceView == null) {
+        this.surfaceView = new SurfaceView(baseActivity);
+
+        // 相对布局的设置
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
+                width, height);//
+        layoutParams.setMargins(x, y, 0, 0);
+
+        // surfaceView 设置
+        this.surfaceView.setZOrderMediaOverlay(true);
+
+        baseActivity.addContentView(this.surfaceView, layoutParams);
+
+        //
+        SurfaceHolder holder = this.surfaceView.getHolder();
+        holder.addCallback(new SurfaceHolder.Callback() {
+
+            @Override
+            public void surfaceCreated(SurfaceHolder holder) {
+                try {
+
+                    if (mediaPlayer == null) {
+                        mediaPlayer = new MediaPlayer();
+                    }
+                    mediaPlayer
+                            .setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    try {
+                        mediaPlayer.setDataSource(afd.getFileDescriptor(),
+                                afd.getStartOffset(), afd.getLength());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    mediaPlayer.setDisplay(holder);
+                    mediaPlayer
+                            .setOnVideoSizeChangedListener(VideoUtils.this);
+                    mediaPlayer.setOnPreparedListener(VideoUtils.this);
+                    mediaPlayer.setAudioStreamType(3);
+                    mediaPlayer.setOnCompletionListener(VideoUtils.this);
+
+                } catch (IllegalArgumentException e) {
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+                    e.printStackTrace();
+                } catch (IllegalStateException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder arg0, int arg1,
+                    int arg2, int arg3) {
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder arg0) {
+                // 删除播放器
+                if (mediaPlayer != null) {
+                    if (mediaPlayer.isPlaying())
+                        mediaPlayer.stop();
+                    mediaPlayer.release();
+                    mediaPlayer = null;
+                }
+                surfaceView = null;
+                Log.e(&quot;surface view&quot;, &quot;surfaceDestroyed&quot;);
+            }
+        });
+    }
+
+}
+
+Runnable runnable = new Runnable() {
+
+    @Override
+    public void run() {
+        _init();
+    }
+};
+
+/**
+ * 播放
+ */
+public void _play() {
+    Log.e(&quot;_play&quot;,
+            &quot;mediaPlayer is exist &quot; + String.valueOf(mediaPlayer != null));
+
+    Log.e(&quot;_play&quot;,
+            &quot;surfaceView is exist &quot; + String.valueOf(surfaceView != null));
+
+    if (this.mediaName == null) {
+        return;
+    }
+    if (this.mediaPlayer == null &amp;&amp; this.surfaceView == null) {
+        // 开启异步线程显示视频
+        baseActivity.runOnUiThread(runnable);
+    }
+    if (this.mediaPlayer != null) {
+        this.mediaPlayer.start();
+    }
+
+}
+
+/**
+ * 暂停
+ */
+public void _pause() {
+
+    if (this.mediaPlayer != null) {
+        this.mediaPlayer.pause();
+    }
+
+}
+
+/**
+ * 停止
+ */
+public void _stop() {
+    try {
+
+        _removeVideo();
+    } catch (Exception e) {
+    }
+}
+
+/**
+ * 删除视频
+ */
+public void _removeVideo() {
+    Log.e(&quot;_removeVideo&quot;,
+            &quot;mediaPlayer is exist &quot; + String.valueOf(mediaPlayer != null));
+    // 删除播放器
+    if (this.mediaPlayer != null) {
+        if (this.mediaPlayer.isPlaying())
+            this.mediaPlayer.stop();
+        this.mediaPlayer.release();
+        this.mediaPlayer = null;
+    }
+
+    Log.e(&quot;_removeVideo&quot;,
+            &quot;surfaceView is exist &quot; + String.valueOf(surfaceView != null));
+    // 删除surface view
+    if (this.surfaceView != null) {
+        baseActivity.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                ViewGroup parent = (ViewGroup) surfaceView.getParent();
+                parent.removeView(surfaceView);
+
+                surfaceView = null;
+            }
+        });
+
+    }
+
+    Log.e(&quot;_removeVideo&quot;,
+            &quot;surfaceView is exist &quot; + String.valueOf(surfaceView != null));
+}
+
+/**
+ * 各种回调
+ */
+// 准备播放回调
+@Override
+public void onPrepared(MediaPlayer mediaPlayer) {
+    // if (isPlay == true) {
+    mediaPlayer.start();
+    // isPlay = false;
+    // }
+
+}
+
+// 改变设置回调
+@Override
+public void onVideoSizeChanged(MediaPlayer mediaPlayer, int width,
+        int height) {
+}
+
+// 完成播放回调
+@Override
+public void onCompletion(MediaPlayer mp) {
+
+    try {
+        if (gameObject != null) {
+            UnityPlayer.UnitySendMessage(gameObject, completedCallback, &quot;&quot;);
+        }
+        // 删除
+        _removeVideo();
+    } catch (IllegalStateException e) {
+        e.printStackTrace();
+    } finally {
+
+    }
+}
+}
+</code></pre><p>`</p>
+<h2 id="3-MovieTexture等方式的播放参考雨凇大人的博客"><a href="#3-MovieTexture等方式的播放参考雨凇大人的博客" class="headerlink" title="3.MovieTexture等方式的播放参考雨凇大人的博客"></a>3.MovieTexture等方式的播放参考雨凇大人的博客</h2><p>More info: <a href="http://www.xuanyusong.com/archives/1019" target="_blank" rel="external">雨凇大人博客</a></p>
+<p>以上为我当前所知的有关Unity视频播放的方法，在真是游戏中并没有那么多的视频播放，原生播放已经满足，我所给出的代码采用的是定制播放，可定制位置和播放的窗口大小，读者可任意拓展。</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-27T11:39:48.851Z" itemprop="datePublished">2017-03-27</time>
+        </span>
+
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-Four" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/27/Four/">设置VScode作为Unity的默认编辑器</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>Unity在最新的Unity5.5.0版本中，终于可以支持VScode作为其编辑器了!<br><img src="http://i.imgur.com/0VlztTl.png" alt=""><br>安装Unity5.5.0后，再安装VSCode，将Unity的默认编辑器设定为VSCode，打开VSCode的插件栏输入Unity，然后将下图中插件全部装上，。</p>
+<p><img src="http://i.imgur.com/RhUbsAf.png" alt=""></p>
+<p>这样VSCode方面就设定好了，其中Unity Snippet这个插件就是进行Mono的代码提示，当然这个插件要想识别，最需要的一点就是在文件忽略上，如下图。<br><img src="http://i.imgur.com/22YJ4rS.png" alt=""><br>在文件配置部分和工作区设置都可以进行文件的忽略，但在编辑的时候进行非脚本忽略就行了，对于<em>.csproj和</em>.sln文件不要忽略，不然Snippet就无法识别，也就没有代码提示了。下图为插件截图，可以看到有引用查看和代码提示。<br><img src="http://i.imgur.com/Sk1lVDb.png" alt=""></p>
+<p><img src="http://i.imgur.com/VMKMCaq.png" alt=""></p>
+<p>如果你在工作中无法使用Unity5.5.0之前的版本，按照下方参考链接给出的方式去配置就行了，内容基本一致。</p>
+<p>参考方法：<a href="http://code.visualstudio.com/Docs/runtimes/unity" title="VSCode For Unity" target="_blank" rel="external">http://code.visualstudio.com/Docs/runtimes/unity</a></p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-27T11:39:48.846Z" itemprop="datePublished">2017-03-27</time>
+        </span>
+
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-First" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/27/First/">Unity音频读取的一个Tip</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>1.处理音频加载时的一个问题，在导入音频的时候除了在StreamingAssets文件夹是进行文件的识别外，其它的文件夹都会进行文件的导入转换。在这个部分中LoadType会影响音频文件加载的快慢，默认会是Docompressed  On Load;小音频的话会采用这种，但是较大的音频话加载会出现卡顿。此时就建议使用Compressed In Memory,对于较大音频文件就不会出现卡顿了。</p>
+<p><img src="http://i.imgur.com/Md2KcZo.png" alt=""></p>
+<p>2.另一种解决播放大音频的卡顿的方法是采用硬件平台本身的音频播放，均不会发生卡顿。</p>
+<p>总结：由于是经验之谈并未添加代码，这是解决部分较大音频播放的方法</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-27T11:39:48.822Z" itemprop="datePublished">2017-03-27</time>
+        </span>
+
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+        </div>
+        <div class="column one-third">
+          <!--处理未安装 search 插件 默认 Google 搜索-->
+ 
+
+<h3>Search</h3>
+
+<div id="site_search">
+
+	<!-- Google -->
+	
+
+	<!-- 本地搜索 -->
+	
+		<form id="search-form" >
+			<input type="text" id="search" placeholder="Search" >
+			<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+		</form>
+
+		<div id="local-search-result"></div>
+
+		<script src="/js/search.js"></script>	
+		<script type="text/javascript">
+			$(function(){
+				var currentIndex = -1;
+				var search_path = "search.xml";
+				if (!search_path) search_path = "search.xml";
+				var path = "/" + search_path;
+				searchFunc(path, 'search', 'local-search-result');
+
+				$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
+					var liNode = $("#local-search-result>.search-result-list li");
+					liNode.removeClass("hover");
+					currentIndex = $("#local-search-result>.search-result-list li").index($(this));
+					liNode.eq(currentIndex).addClass("hover");
+				})
+
+				$("#search-form").submit(function(){
+					return false;
+				})
+
+				$("#search").keydown(function(event){
+					var keyCode = event.keyCode;
+					var liNode = $("#local-search-result>.search-result-list li");
+					if(keyCode == 38 || keyCode == 40 || keyCode == 13){
+						liNode.removeClass("hover");
+						if(keyCode == 38){
+							if(currentIndex - 1 >= 0) currentIndex --;
+						}
+						if(keyCode == 40){
+							if(currentIndex + 1 < liNode.length) currentIndex ++;
+						}
+						if(keyCode == 13){
+							location.href = liNode.eq(currentIndex).find("a").attr("href");
+						}
+						liNode.eq(currentIndex).addClass("hover");
+						return false;
+					}else{
+						currentIndex = -1;
+					}
+				})
+			})
+		</script>
+
+	
+
+</div>
+
+<h3>Popular Repositories</h3>
+    <div class="popular-container"></div>
+    
+    <script type="text/template" id="popular-list-template">
+        <a href="{%=clone_url%}" class="card text-center" target="_blank">
+            <div class="thumbnail">
+                <div class="card-image geopattern" data-pattern-id="{%=name%}">
+                    <div class="card-image-cell">
+                        <h3 class="card-title">
+                            {%=name%}
+                        </h3>
+                    </div>
+                </div>
+                <div class="caption">
+                    <div class="card-description">
+                        <p class="card-text">
+                            {%=description%}
+                        </p>
+                    </div>
+                    <div class="card-text">
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=stargazers_count%} stars">
+                            <span class="octicon octicon-star"></span> {%=stargazers_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=forks_count%} forks">
+                            <span class="octicon octicon-git-branch"></span> {%=forks_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="最后更新时间：{%=updated_at%}">
+                            <span class="octicon octicon-clock"></span>
+                            <time datetime="{%=updated_at%}">{%=updated_at%}</time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </script>
+
+    <script src="/js/baiduTemplate.js"></script>
+    <script type="text/javascript">
+        var popular_repos = function(){
+
+            var baiduTpl = new Object();
+
+            var handleTpl = function(){
+                baiduTpl.popular_list = baidu.template("popular-list-template");
+            };
+
+            var handleGithub = function(){
+                var popularContainer = $(".popular-container");
+
+                var repos = "UnityBuildTool".split(",");
+                for(var i in repos){
+                    var name = repos[i];
+                    $.get("https://api.github.com/repos/FelixDYS/"+name,handle);
+                }
+
+                function handle(result){
+                    result.updated_at = result.updated_at.split("T")[0];
+                    if(result){
+                        var html = baiduTpl.popular_list(result);
+                        popularContainer.append(html);
+                        $(".geopattern").each(function(){           
+                            $(this).geopattern($(this).data('pattern-id'));
+                        });
+                    }
+                }
+            };
+
+            return {
+                init:function(){
+                    handleTpl();
+                    handleGithub();
+                }
+            }
+        }; 
+        $(popular_repos().init);
+    </script>
+
+        </div>
+    </div>
+
+    
+</section>
+
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2016
+                <span title="yumemor">yumemor</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
+
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
+
+        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <ul class="site-footer-links mobile-hidden">
+            
+                  
+                  <li>
+                    <a href="/"  title="首页">首页</a>
+                  </li>
+            
+            <li>
+                <a href="/atom.xml">
+                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+		<script src="/js/geopattern.js"></script>
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		
+
+		<script src="/js/index.js"></script>
+
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
+</html>
