@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://felixdys.github.io/</id>
     <title>FelixDYS</title>
-    <updated>2021-08-05T07:27:12.748Z</updated>
+    <updated>2021-08-05T07:29:56.896Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://felixdys.github.io/"/>
     <link rel="self" href="https://felixdys.github.io/atom.xml"/>
@@ -10,4 +10,165 @@
     <logo>https://felixdys.github.io/images/avatar.png</logo>
     <icon>https://felixdys.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, FelixDYS</rights>
+    <entry>
+        <title type="html"><![CDATA[Unity多线程]]></title>
+        <id>https://felixdys.github.io/post/unity-duo-xian-cheng/</id>
+        <link href="https://felixdys.github.io/post/unity-duo-xian-cheng/">
+        </link>
+        <updated>2021-08-05T07:27:35.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="loom">Loom</h1>
+<pre><code class="language-C#">using UnityEngine;
+using System.Collections.Generic;
+using System;
+using System.Threading;
+using System.Linq;
+
+public class Loom : MonoBehaviour
+{
+	public static int maxThreads = 8;
+	static int numThreads;
+
+	private static Loom _current;
+	private int _count;
+	public static Loom Current
+	{
+		get
+		{
+			Initialize();
+			return _current;
+		}
+	}
+
+	void Awake()
+	{
+		_current = this;
+		initialized = true;
+	}
+
+	static bool initialized;
+
+	static void Initialize()
+	{
+		if (!initialized)
+		{
+
+			if (!Application.isPlaying)
+				return;
+			initialized = true;
+			var g = new GameObject(&quot;Loom&quot;);
+			_current = g.AddComponent&lt;Loom&gt;();
+		}
+
+	}
+
+	private List&lt;Action&gt; _actions = new List&lt;Action&gt;();
+	public struct DelayedQueueItem
+	{
+		public float time;
+		public Action action;
+	}
+	private List&lt;DelayedQueueItem&gt; _delayed = new List&lt;DelayedQueueItem&gt;();
+
+	List&lt;DelayedQueueItem&gt; _currentDelayed = new List&lt;DelayedQueueItem&gt;();
+
+	public static void QueueOnMainThread(Action action)
+	{
+		QueueOnMainThread(action, 0f);
+	}
+	public static void QueueOnMainThread(Action action, float time)
+	{
+		if (time != 0)
+		{
+			lock (Current._delayed)
+			{
+				Current._delayed.Add(new DelayedQueueItem { time = Time.time + time, action = action });
+			}
+		}
+		else
+		{
+			lock (Current._actions)
+			{
+				Current._actions.Add(action);
+			}
+		}
+	}
+
+	public static Thread RunAsync(Action a)
+	{
+		Initialize();
+		while (numThreads &gt;= maxThreads)
+		{
+			Thread.Sleep(1);
+		}
+		Interlocked.Increment(ref numThreads);
+		ThreadPool.QueueUserWorkItem(RunAction, a);
+		return null;
+	}
+
+	private static void RunAction(object action)
+	{
+		try
+		{
+			((Action)action)();
+		}
+		catch
+		{
+		}
+		finally
+		{
+			Interlocked.Decrement(ref numThreads);
+		}
+
+	}
+
+
+	void OnDisable()
+	{
+		if (_current == this)
+		{
+
+			_current = null;
+		}
+	}
+
+
+
+	// Use this for initialization
+	void Start()
+	{
+
+	}
+
+	List&lt;Action&gt; _currentActions = new List&lt;Action&gt;();
+
+	// Update is called once per frame
+	void Update()
+	{
+		lock (_actions)
+		{
+			_currentActions.Clear();
+			_currentActions.AddRange(_actions);
+			_actions.Clear();
+		}
+		foreach (var a in _currentActions)
+		{
+			a();
+		}
+		lock (_delayed)
+		{
+			_currentDelayed.Clear();
+			_currentDelayed.AddRange(_delayed.Where(d =&gt; d.time &lt;= Time.time));
+			foreach (var item in _currentDelayed)
+				_delayed.Remove(item);
+		}
+		foreach (var delayed in _currentDelayed)
+		{
+			delayed.action();
+		}
+
+	}
+}
+</code></pre>
+]]></content>
+    </entry>
 </feed>

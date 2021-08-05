@@ -2,23 +2,23 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于 | FelixDYS</title>
+<title>Unity多线程 | FelixDYS</title>
 <link rel="shortcut icon" href="https://felixdys.github.io//favicon.ico?v=1628148593525">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://felixdys.github.io//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | FelixDYS - Atom Feed" href="https://felixdys.github.io//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Unity多线程 | FelixDYS - Atom Feed" href="https://felixdys.github.io//atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="
-欢迎来到我的小站呀，很高兴遇见你！🤝
+    <meta name="description" content="Loom
+using UnityEngine;
+using System.Collections.Generic;
+using System;
+using System.Threading;
+using System.Linq;
 
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
+publ..." />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -81,39 +81,178 @@
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于
+              Unity多线程
             </h2>
             <div class="post-info">
               <span>
-                2019-01-25
+                2021-08-05
               </span>
               <span>
-                1 min read
+                2 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+                <h1 id="loom">Loom</h1>
+<pre><code class="language-C#">using UnityEngine;
+using System.Collections.Generic;
+using System;
+using System.Threading;
+using System.Linq;
+
+public class Loom : MonoBehaviour
+{
+	public static int maxThreads = 8;
+	static int numThreads;
+
+	private static Loom _current;
+	private int _count;
+	public static Loom Current
+	{
+		get
+		{
+			Initialize();
+			return _current;
+		}
+	}
+
+	void Awake()
+	{
+		_current = this;
+		initialized = true;
+	}
+
+	static bool initialized;
+
+	static void Initialize()
+	{
+		if (!initialized)
+		{
+
+			if (!Application.isPlaying)
+				return;
+			initialized = true;
+			var g = new GameObject(&quot;Loom&quot;);
+			_current = g.AddComponent&lt;Loom&gt;();
+		}
+
+	}
+
+	private List&lt;Action&gt; _actions = new List&lt;Action&gt;();
+	public struct DelayedQueueItem
+	{
+		public float time;
+		public Action action;
+	}
+	private List&lt;DelayedQueueItem&gt; _delayed = new List&lt;DelayedQueueItem&gt;();
+
+	List&lt;DelayedQueueItem&gt; _currentDelayed = new List&lt;DelayedQueueItem&gt;();
+
+	public static void QueueOnMainThread(Action action)
+	{
+		QueueOnMainThread(action, 0f);
+	}
+	public static void QueueOnMainThread(Action action, float time)
+	{
+		if (time != 0)
+		{
+			lock (Current._delayed)
+			{
+				Current._delayed.Add(new DelayedQueueItem { time = Time.time + time, action = action });
+			}
+		}
+		else
+		{
+			lock (Current._actions)
+			{
+				Current._actions.Add(action);
+			}
+		}
+	}
+
+	public static Thread RunAsync(Action a)
+	{
+		Initialize();
+		while (numThreads &gt;= maxThreads)
+		{
+			Thread.Sleep(1);
+		}
+		Interlocked.Increment(ref numThreads);
+		ThreadPool.QueueUserWorkItem(RunAction, a);
+		return null;
+	}
+
+	private static void RunAction(object action)
+	{
+		try
+		{
+			((Action)action)();
+		}
+		catch
+		{
+		}
+		finally
+		{
+			Interlocked.Decrement(ref numThreads);
+		}
+
+	}
+
+
+	void OnDisable()
+	{
+		if (_current == this)
+		{
+
+			_current = null;
+		}
+	}
+
+
+
+	// Use this for initialization
+	void Start()
+	{
+
+	}
+
+	List&lt;Action&gt; _currentActions = new List&lt;Action&gt;();
+
+	// Update is called once per frame
+	void Update()
+	{
+		lock (_actions)
+		{
+			_currentActions.Clear();
+			_currentActions.AddRange(_actions);
+			_actions.Clear();
+		}
+		foreach (var a in _currentActions)
+		{
+			a();
+		}
+		lock (_delayed)
+		{
+			_currentDelayed.Clear();
+			_currentDelayed.AddRange(_delayed.Where(d =&gt; d.time &lt;= Time.time));
+			foreach (var item in _currentDelayed)
+				_delayed.Remove(item);
+		}
+		foreach (var delayed in _currentDelayed)
+		{
+			delayed.action();
+		}
+
+	}
+}
+</code></pre>
 
               </div>
               <div class="toc-container">
                 <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
+<li><a href="#loom">Loom</a></li>
 </ul>
 
               </div>
